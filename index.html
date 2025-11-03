@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oasis - Seu Refúgio Gamer</title>
+    <title>Oasis - O Refúgio Gamer Neon</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Press+Start+2P&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
     <style>
-        /* --- ESTILOS GERAIS (CSS) --- */
-
+        /* --- VARIÁVEIS E ESTILOS GERAIS --- */
         :root {
-            --cor-fundo-escuro: #0a0a14; /* Azul quase preto */
-            --cor-fundo-medio: #12121e; /* Azul-escuro */
+            --cor-fundo-escuro: #0a0a14;
+            --cor-fundo-medio: #12121e;
             --cor-primaria-neon: #00ffff; /* Ciano Neon */
             --cor-secundaria-neon: #ff00ff; /* Magenta Neon */
+            --cor-destaque: #ffea00; /* Amarelo Elétrico */
             --cor-texto: #e0e0e0;
             --cor-texto-titulo: #ffffff;
         }
@@ -32,6 +34,13 @@
             background-color: var(--cor-fundo-medio);
             color: var(--cor-texto);
             line-height: 1.6;
+            overflow-x: hidden; /* Previne scroll horizontal por elementos animados */
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 0 20px;
         }
 
         h1, h2, h3 {
@@ -40,116 +49,209 @@
             text-transform: uppercase;
         }
 
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 0 20px;
+        /* --- ANIMAÇÕES DE NEON --- */
+        .text-neon {
+            text-shadow: 0 0 5px var(--cor-primaria-neon), 0 0 15px var(--cor-primaria-neon), 0 0 30px var(--cor-primaria-neon), 0 0 40px #00aaff;
+            animation: pulse-neon 1.5s infinite alternate;
+        }
+
+        @keyframes pulse-neon {
+            0% {
+                opacity: 0.8;
+                text-shadow: 0 0 4px var(--cor-primaria-neon);
+            }
+            100% {
+                opacity: 1;
+                text-shadow: 0 0 10px var(--cor-primaria-neon), 0 0 20px #00aaff;
+            }
         }
 
         /* --- CABEÇALHO (HERO SECTION) --- */
 
         header.hero {
-            /* Usando o banner que criamos como fundo */
-            background-image: linear-gradient(rgba(10, 10, 20, 0.7), rgba(10, 10, 20, 0.9)), url('http://googleusercontent.com/image_generation_content/1');
+            /* Fundo com imagem e sobreposição para o neon */
+            background-image: linear-gradient(rgba(10, 10, 20, 0.8), rgba(10, 10, 20, 0.95)), url('http://googleusercontent.com/image_generation_content/1');
             background-size: cover;
             background-position: center;
-            padding: 80px 20px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             text-align: center;
-            border-bottom: 3px solid var(--cor-primaria-neon);
+            border-bottom: 5px solid var(--cor-secundaria-neon);
+        }
+
+        header.hero .logo-container {
+            position: relative;
+            margin-bottom: 30px;
+            animation: scale-up 1s ease-out;
+        }
+
+        @keyframes scale-up {
+            from { transform: scale(0.5); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
 
         header.hero .logo {
-            /* Usando a logo que criamos */
-            width: 150px;
-            height: 150px;
+            width: 180px;
+            height: 180px;
             border-radius: 50%;
-            border: 4px solid var(--cor-primaria-neon);
-            box-shadow: 0 0 20px var(--cor-primaria-neon);
-            margin-bottom: 20px;
+            border: 5px solid var(--cor-primaria-neon);
+            box-shadow: 0 0 25px var(--cor-primaria-neon), 0 0 50px rgba(0, 255, 255, 0.5);
         }
 
         header.hero h1 {
-            font-size: 3.5rem;
-            color: var(--cor-texto-titulo);
-            text-shadow: 0 0 10px var(--cor-primaria-neon);
-            margin-bottom: 10px;
+            font-size: 5rem;
+            margin-bottom: 15px;
+            font-family: 'Press Start 2P', cursive;
         }
 
         header.hero .tagline {
-            font-size: 1.5rem;
-            color: var(--cor-texto);
-            margin-bottom: 30px;
+            font-size: 1.8rem;
+            color: var(--cor-destaque);
+            margin-bottom: 40px;
+            font-family: 'Orbitron', sans-serif;
+            text-shadow: 0 0 10px var(--cor-destaque);
         }
 
-        /* --- BOTÃO (CALL TO ACTION) --- */
+        /* --- BOTÃO CTA (Efeito Glitch) --- */
 
         .cta-button {
             display: inline-block;
             font-family: 'Orbitron', sans-serif;
             background: var(--cor-secundaria-neon);
             color: var(--cor-texto-titulo);
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             font-weight: 700;
             text-decoration: none;
             text-transform: uppercase;
-            padding: 15px 40px;
-            border-radius: 50px;
-            border: 2px solid var(--cor-secundaria-neon);
-            box-shadow: 0 0 15px var(--cor-secundaria-neon), inset 0 0 5px rgba(255,255,255,0.5);
-            transition: all 0.3s ease;
+            padding: 18px 50px;
+            border-radius: 8px;
+            border: 3px solid var(--cor-secundaria-neon);
+            box-shadow: 0 0 20px var(--cor-secundaria-neon), inset 0 0 8px rgba(255,255,255,0.7);
+            transition: all 0.2s ease-in-out;
+            position: relative;
+            overflow: hidden;
+            z-index: 10;
         }
 
         .cta-button:hover {
-            transform: scale(1.1);
+            transform: translateY(-3px) scale(1.05);
             background: #ff33ff;
-            box-shadow: 0 0 30px var(--cor-secundaria-neon), inset 0 0 10px rgba(255,255,255,0.7);
+            box-shadow: 0 0 40px var(--cor-secundaria-neon), inset 0 0 15px rgba(255,255,255,0.9);
         }
 
-        /* --- SEÇÃO DE BENEFÍCIOS --- */
+        /* Efeito de glitch/flicker (piscar) */
+        .cta-button:before {
+            content: attr(data-text);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--cor-secundaria-neon);
+            clip: rect(44px, 450px, 56px, 0);
+            z-index: -1;
+            opacity: 0.1;
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { clip: rect(44px, 9999px, 45px, 0); }
+            10% { clip: rect(65px, 9999px, 80px, 0); }
+            20% { clip: rect(10px, 9999px, 30px, 0); }
+            30% { clip: rect(70px, 9999px, 85px, 0); }
+            100% { clip: rect(44px, 9999px, 45px, 0); }
+        }
+
+        /* --- SEÇÃO DE BENEFÍCIOS (MAIS DETALHADA) --- */
 
         #features {
-            padding: 60px 0;
+            padding: 80px 0;
             background-color: var(--cor-fundo-escuro);
         }
 
         #features h2 {
             text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 40px;
+            font-size: 3rem;
+            margin-bottom: 50px;
             color: var(--cor-primaria-neon);
+            text-shadow: 0 0 10px var(--cor-primaria-neon);
         }
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 25px;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
         }
 
         .feature-card {
             background: var(--cor-fundo-medio);
-            border: 2px solid #2a2a4a;
-            border-radius: 10px;
-            padding: 30px;
+            border: 3px solid #2a2a4a;
+            border-radius: 12px;
+            padding: 35px;
             text-align: center;
-            transition: all 0.3s ease;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
         }
 
         .feature-card:hover {
-            transform: translateY(-10px);
-            border-color: var(--cor-primaria-neon);
-            box-shadow: 0 5px 20px rgba(0, 255, 255, 0.1);
+            transform: scale(1.05) translateY(-5px);
+            border-color: var(--cor-secundaria-neon);
+            box-shadow: 0 0 15px var(--cor-secundaria-neon);
+            background: #1e0a24; /* Um fundo mais escuro ao passar o mouse */
         }
 
         .feature-card .icon {
-            font-size: 3rem;
+            font-size: 3.5rem;
             margin-bottom: 15px;
-            /* Usando emojis como ícones */
+            color: var(--cor-destaque);
+            animation: spin-hover 0.8s ease-out; /* Animação ao passar o mouse */
         }
 
         .feature-card h3 {
-            font-size: 1.5rem;
-            color: var(--cor-texto-titulo);
+            font-size: 1.6rem;
+            color: var(--cor-primaria-neon);
             margin-bottom: 10px;
+        }
+
+        /* --- SEÇÃO DE INTERATIVIDADE (TESTEMUNHOS) --- */
+
+        #interactivity {
+            padding: 60px 0;
+            background-color: var(--cor-fundo-medio);
+            text-align: center;
+        }
+
+        #interactivity h2 {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            color: var(--cor-secundaria-neon);
+            text-shadow: 0 0 8px var(--cor-secundaria-neon);
+        }
+
+        .testimonial-card {
+            background: var(--cor-fundo-escuro);
+            padding: 30px;
+            border-radius: 10px;
+            border-left: 5px solid var(--cor-destaque);
+            margin: 20px auto;
+            max-width: 800px;
+            font-style: italic;
+        }
+
+        .testimonial-card p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card small {
+            display: block;
+            text-align: right;
+            font-weight: bold;
+            color: var(--cor-primaria-neon);
         }
 
         /* --- RODAPÉ --- */
@@ -158,71 +260,106 @@
             background: var(--cor-fundo-escuro);
             text-align: center;
             padding: 40px 20px;
-            margin-top: 40px;
-            border-top: 3px solid #2a2a4a;
+            border-top: 5px solid var(--cor-primaria-neon);
         }
 
         footer p {
-            margin-bottom: 20px;
-            font-size: 0.9rem;
+            margin-bottom: 25px;
+            font-size: 1rem;
             color: #888;
         }
 
+        /* --- MEDIA QUERIES para responsividade --- */
+        @media (max-width: 768px) {
+            header.hero h1 {
+                font-size: 3rem;
+            }
+            header.hero .tagline {
+                font-size: 1.2rem;
+            }
+            .cta-button {
+                font-size: 1.2rem;
+                padding: 15px 30px;
+            }
+        }
     </style>
 </head>
 <body>
 
 <header class="hero">
-    <img src=logo.png alt="Logo Oasis" class="logo">
-    <h1>OASIS</h1>
-    <p class="tagline">O seu refúgio gamer definitivo está aqui.</p>
+    <div class="logo-container">
+        <img src=logo.png alt="Logo Oasis" class="logo">
+    </div>
+    <h1 class="text-neon">OASIS</h1>
+    <p class="tagline">Seu Refúgio Gamer Definitivo. Encontre sua equipe.</p>
 
-    <a href="https://discord.gg/78zEyucsqw" class="cta-button" target="_blank" rel="noopener noreferrer">
-        Entrar no Discord
+    <a href="https://discord.gg/78zEyucsqw" class="cta-button" data-text="ENTRAR NO OASIS" target="_blank" rel="noopener noreferrer">
+        ENTRAR NO DISCORD AGORA!
     </a>
 </header>
 
 <main>
     <section id="features">
         <div class="container">
-            <h2>Por que entrar no Oasis?</h2>
+            <h2>Por que a Comunidade Oasis é O Seu Próximo Home?</h2>
 
             <div class="features-grid">
                 <div class="feature-card">
-                    <div class="icon">💬</div>
-                    <h3>Comunidade Ativa</h3>
-                    <p>Encontre jogadores para suas partidas a qualquer hora do dia. Chega de jogar sozinho!</p>
+                    <div class="icon"><i class="fas fa-headset"></i></div>
+                    <h3>Canais "Crie Seu Próprio"</h3>
+                    <p>Nunca mais espere por uma sala vazia! Entre no canal gatilho e o bot cria instantaneamente uma sala de voz privada para você e sua equipe. Perfeito para grupos rápidos.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="icon">🎧</div>
-                    <h3>Canais de Voz Próprios</h3>
-                    <p>Cansado de salas lotadas? Crie seu próprio canal de voz temporário com apenas um clique.</p>
+                    <div class="icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Patentes de XP (Lvl 100)</h3>
+                    <p>Mostre sua dedicação! Ganhe XP por conversar e interagir, subindo até o cargo de **'Lenda do Oásis'**. Níveis e recompensas de cargo exclusivas.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="icon">🏆</div>
-                    <h3>Eventos e Torneios</h3>
-                    <p>Participe de torneios, sorteios e noites de jogos com prêmios exclusivos para membros.</p>
+                    <div class="icon"><i class="fas fa-users"></i></div>
+                    <h3>Eventos e LFG Imediato</h3>
+                    <p>Torneios semanais, noites de filme e sorteios. Utilize nossos canais **LFG** (Looking for Group) para formar seu esquadrão em segundos, para qualquer jogo.</p>
                 </div>
 
                 <div class="feature-card">
-                    <div class="icon">🛡️</div>
-                    <h3>Ambiente Seguro</h3>
-                    <p>Moderação ativa e regras claras para garantir um ambiente divertido, respeitoso e livre de toxicidade.</p>
+                    <div class="icon"><i class="fas fa-palette"></i></div>
+                    <h3>Estética Neon e Cores</h3>
+                    <p>Personalize seu perfil com **Cargos de Cores** (Roxo Neon, Azul Cybor) e emblemas de plataforma. Deixe seu nome brilhar no chat do Oasis!</p>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <section id="interactivity">
+        <div class="container">
+            <h2>O Que Nossos Membros Dizem</h2>
+
+            <div class="testimonial-card">
+                <p>"Eu estava cansado de servidores tóxicos. O Oasis realmente é o refúgio. Encontrei minha equipe fixa de Valorant aqui!"</p>
+                <small>— @Guardian_Alpha (Nível 40)</small>
+            </div>
+
+            <div class="testimonial-card">
+                <p>"O sistema de canais temporários é genial! Além das cores, claro. Melhor comunidade para relaxar depois do trabalho."</p>
+                <small>— @Neon_GamerGirl (Nível 25)</small>
+            </div>
+
+            <a href="https://discord.gg/78zEyucsqw" class="cta-button" data-text="EU QUERO ENTRAR" target="_blank" rel="noopener noreferrer" style="margin-top: 30px;">
+                EU QUERO ENTRAR AGORA!
+            </a>
         </div>
     </section>
 </main>
 
 <footer>
     <div class="container">
-        <p>© 2025 Oasis. Todos os direitos reservados. Um refúgio feito de gamers para gamers.</p>
-
-        <a href="https://discord.gg/78zEyucsqw" class="cta-button" target="_blank" rel="noopener noreferrer">
-            Junte-se à Comunidade!
-        </a>
+        <p>Oasis: Where Gamers Find Their Home. | 2025.</p>
+        <div style="font-size: 1.5rem; color: var(--cor-primaria-neon);">
+            <i class="fab fa-discord" style="margin-right: 15px;"></i>
+            <i class="fab fa-twitter" style="margin-right: 15px;"></i>
+            <i class="fab fa-twitch"></i>
+        </div>
     </div>
 </footer>
 
